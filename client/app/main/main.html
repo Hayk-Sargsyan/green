@@ -2,18 +2,28 @@
   <h2>Welcome to SweetBox</h2>
 
   <div>
-    <input placeholder="Code" ng-model="barcode">
+    <input placeholder="Code" ng-model="barcode" ng-model-options="{ debounce: 1000 }" >
   </div>
-  {{barcode}}
-  <div>
+
+  <div ng-if="product" class="current_product">
+    <h1 >Selected product</h1>
+    <h3>{{product.name}}</h3>
+    <h4>{{product.price}}</h4>
+    <h4>BarCode - {{product.number}}</h4>
+    <button ng-click="add(product)">Add</button>
+    <button ng-click="cancel()">Cancel</button>
+  </div>
+
+  <div ng-if="productList.length">
     <table>
       <thead>
         <td>Product name</td>
         <td>Price</td>
       </thead>
-      <!--<td ng-repeat="">-->
-        <!--<tr></tr>-->
-      <!--</td>-->
+      <td ng-repeat="product in productList track by $index">
+        <tr>{{product.name}}</tr>
+        <tr>{{product.price}}</tr>
+      </td>
     </table>
   </div>
 </div>
