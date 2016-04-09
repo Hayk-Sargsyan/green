@@ -8,5 +8,7 @@ var Sweets  = require('./sweets.model');
  * restriction: 'admin'
  */
 exports.all = function(req, res) {
-  return true;
+  return res.status(200).json({
+    aac: "asd"
+  });
 };

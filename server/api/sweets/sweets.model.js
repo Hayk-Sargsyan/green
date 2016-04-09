@@ -2,7 +2,7 @@
 
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
-var Schema = require('mongoose');
+var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
   barcode: String,
