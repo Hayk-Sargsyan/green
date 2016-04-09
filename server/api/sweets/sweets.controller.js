@@ -15,9 +15,13 @@ export function all(req, res) {
 // Gets a single Thing from the DB
 export function show(req, res) {
   return Sweet.find({"number": req.params.number}).exec()
-    .then(handleEntityNotFound(res))
-    .then(respondWithResult(res))
-    .catch(handleError(res));
+    .then(function(result){
+      if (result) {
+        res.status(200).json(result[0]);  
+      } else {
+        res.status(404).end();
+      }
+    });
 }
 
 // Creates a new Thing in the DB
@@ -61,15 +65,11 @@ export function destroy(req, res) {
 
 
 
-
-
-
-
-
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
   return function(entity) {
     if (entity) {
+      console.log()
       res.status(statusCode).json(entity);
     }
   };
