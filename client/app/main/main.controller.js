@@ -9,11 +9,14 @@ angular.module('sweetboxApp')
         return;
       }
 
-      Sweet.get($scope.barcode, function (res) {
+      Sweet.get({
+        number: $scope.barcode
+      }, function (res) {
         $scope.product = res;
         $scope.productList.push(res);
         $scope.barcode = "";
       }, function (err) {
+        
       });
     });
   });
