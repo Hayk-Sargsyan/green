@@ -8,8 +8,7 @@ var External  = require('./external.model');
  * restriction: 'admin'
  */
 exports.all = function(req, res) {
-  return res.status(200).json({
-    prod: [{id: "1"}, {id: "2"}, {id: "3"}]);
+  return res.status(200).json({prod:[{id:"1"},{id: "2"}, {id: "3"}]});
 };
 
 exports.create = function(req, res) {
