@@ -26,4 +26,18 @@ angular.module('sweetboxApp')
     $scope.cancel = function() {
       $scope.product = null;
     };
+
+    $scope.total = function() {
+      var total = 0;
+
+      if( !$scope.productList.length ) {
+        return 0;
+      }
+
+      _.forEach($scope.productList, function(value) {
+        total += value.price;
+      });
+
+      return total;
+    };
   });
