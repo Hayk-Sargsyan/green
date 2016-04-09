@@ -11,7 +11,7 @@ angular.module('sweetboxApp')
 
     $scope.removeUser = function (product, index) {
       Sweet.delete({
-        _id: product.id
+        number: product.number
       }, function(res) {
         $scope.products.splice(index, 1);
         growl.success("Successful deleted");

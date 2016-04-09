@@ -2,7 +2,7 @@ angular.module('sweetboxApp')
   .factory('Sweet', function ($resource, BaseURL) {
     var replyApiUrl = BaseURL + '/sweets';
 
-    return $resource(replyApiUrl, { id: '@id'},
+    return $resource(replyApiUrl, { number : '@number' },
       {
         query: {
           method: 'GET',
@@ -10,17 +10,18 @@ angular.module('sweetboxApp')
         },
         get: {
           method: 'GET',
+          url: replyApiUrl + '/:number'
         },
         create: {
           method: 'POST'
         },
         edit: {
           method: 'PUT',
-          url: replyApiUrl
+          url: replyApiUrl + '/:number'
         },
         delete: {
           method: 'DELETE',
-          url: replyApiUrl
+          url: replyApiUrl +  + '/:number'
         }
       });
   });

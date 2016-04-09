@@ -4,7 +4,7 @@ var Sweet  = require('./sweets.model');
 
 
 
-import _ from 'lodash';
+var _  = require('lodash');
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
