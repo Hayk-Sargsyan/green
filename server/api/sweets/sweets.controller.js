@@ -46,11 +46,13 @@ export function update(req, res) {
 
 // Deletes a Thing from the DB
 export function destroy(req, res) {
-  console.log(req.params.number);
-  return Sweet.find({"number": req.params.number}).exec()
-    .then(handleEntityNotFound(res))
-    .then(removeEntity(res))
-    // .catch(handleError(res));
+  Sweet.remove({"number": req.params.number}, function (err) {
+    if (!err) {
+      res.status(200).end();  
+    } else {
+      res.status(500).end();
+    }
+  });
 }
 
 
