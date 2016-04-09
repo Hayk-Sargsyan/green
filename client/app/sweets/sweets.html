@@ -1,1 +1,51 @@
-{{bbb}}
+<div class="container">
+  <div class="row" ng-repeat="product in products track by $index">
+    <form editable-form name="editableForm" onaftersave="saveUser()" shown="inserted == product">
+
+      <div class="col-md-3">
+        <!-- editable username (text with validation) -->
+        <span class="title">Product Number: </span><br>
+        <span editable-number="product.number" e-name="name" onbeforesave="checkName($data)" e-required>{{ product.number || 'empty' }}</span>
+      </div>
+
+      <div class="col-md-3">
+        <!-- editable username (text with validation) -->
+        <span class="title">Product Name: </span><br>
+        <span editable-text="product.name" e-name="name" onbeforesave="checkName($data)" e-required>{{ product.name || 'empty' }}</span>
+      </div>
+
+      <div class="col-md-2">
+        <!-- editable status (select-local) -->
+        <span class="title">Price: </span><br>
+        <span editable-number="product.price" e-name="name" onbeforesave="checkName($data)" e-required>{{ product.price || 'empty' }}</span>
+      </div>
+
+      <div class="col-md-2">
+        <!-- editable group (select-remote) -->
+        <span class="title">Count: </span><br>
+        <span editable-number="product.count" e-name="name" onbeforesave="checkName($data)" e-required>{{ product.count || 'empty' }}</span>
+      </div>
+
+      <div class="col-md-2">
+        <div class="buttons">
+          <!-- button to show form -->
+          <button type="button" class="btn btn-default" ng-click="editableForm.$show($index)" ng-show="!editableForm.$visible">
+            Edit
+          </button>
+          <button class="btn btn-danger" ng-click="removeUser($index)" ng-show="!editableForm.$visible">del</button>
+          <!-- buttons to submit / cancel form -->
+      <span ng-show="editableForm.$visible">
+        <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
+          Save
+        </button>
+        <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
+          Cancel
+        </button>
+      </span>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <button class="btn btn-default" ng-click="addProduct()">Add row</button>
+</div>
