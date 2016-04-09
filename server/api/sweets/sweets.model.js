@@ -3,7 +3,7 @@
 var mongoose = require('mongoose');
 
 var SweetSchema = mongoose.Schema({
-  numbe: String,
+  number: String,
   name: String,
   price: Number,
   count: Number
