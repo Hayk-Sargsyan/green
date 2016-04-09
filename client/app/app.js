@@ -16,7 +16,7 @@ angular.module('sweetboxApp', [
 ])
   .config(function($urlRouterProvider, $locationProvider, growlProvider) {
     $urlRouterProvider
-      .otherwise('/login');
+      .otherwise('/');
 
     $locationProvider.html5Mode(true);
 

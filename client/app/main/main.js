@@ -5,7 +5,6 @@ angular.module('sweetboxApp')
       .state('main', {
         url: '/',
         templateUrl: 'app/main/main.html',
-        controller: 'MainCtrl',
-        authenticate: true
+        controller: 'MainCtrl'
       });
   });
