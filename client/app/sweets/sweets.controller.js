@@ -3,6 +3,7 @@ angular.module('sweetboxApp')
     $scope.products = [];
 
     Sweet.query({}, function (res) {
+      console.log(res);
       $scope.products = res;
     }, function (err) {
       growl.error("Something wrong please try again");

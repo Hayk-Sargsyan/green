@@ -1,6 +1,6 @@
 angular.module('sweetboxApp')
   .factory('Sweet', function ($resource, BaseURL) {
-    var replyApiUrl = BaseURL + '/external';
+    var replyApiUrl = BaseURL + '/sweets';
 
     return $resource(replyApiUrl, { id: '@id'},
       {

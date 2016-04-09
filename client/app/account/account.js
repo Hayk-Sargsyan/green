@@ -11,7 +11,7 @@ angular.module('sweetboxApp')
       })
       .state('logout', {
         url: '/logout?referrer',
-        referrer: 'main',
+        referrer: 'login',
         template: '',
         controller: function($state, Auth) {
           var referrer = $state.params.referrer ||

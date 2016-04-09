@@ -1,4 +1,6 @@
 <div class="container">
+  <button class="btn btn-default" ng-click="addProduct()">Add Product</button>
+
   <div class="row" ng-repeat="product in products track by $index">
     <form editable-form name="editableForm" onaftersave="updateProduct(product, $index)" shown="inserted == product">
 
@@ -46,8 +48,6 @@
       </div>
     </form>
   </div>
-
-  <button class="btn btn-default" ng-click="addProduct()">Add row</button>
 </div>
 
 <div growl></div>

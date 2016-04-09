@@ -5,6 +5,7 @@
         .state('sweets', {
           url: '/sweets',
           templateUrl: 'app/sweets/sweets.html',
-          controller: 'SweetsCtrl'
+          controller: 'SweetsCtrl',
+          authenticate: true
         });
     });

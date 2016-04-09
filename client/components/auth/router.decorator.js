@@ -18,7 +18,7 @@ angular.module('sweetboxApp.auth')
 
           event.preventDefault();
           return Auth.isLoggedIn(_.noop).then(is => {
-            $state.go(is ? 'main' : 'login');
+            $state.go('login');
           });
         });
       } else {
@@ -28,7 +28,7 @@ angular.module('sweetboxApp.auth')
           }
 
           event.preventDefault();
-          $state.go('main');
+          $state.go('login');
         });
       }
     });
