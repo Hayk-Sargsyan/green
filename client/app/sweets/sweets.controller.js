@@ -1,27 +1,22 @@
 angular.module('sweetboxApp')
-  .controller('SweetsCtrl', function ($scope, Sweet) {
+  .controller('SweetsCtrl', function ($scope, Sweet, growl) {
+    $scope.products = [];
 
-    $scope.products = [
-      {
-        name: 'awesome user',
-        price: 345,
-        count: 243,
-        number: 12342456789
-      },{
-        name: 'awesome user',
-        price: 345,
-        count: 243,
-        number: 3243564567
-      },{
-        name: 'awesome user',
-        price: 345,
-        count: 243,
-        number: 213456789
-      }
-    ];
+    Sweet.query({}, function (res) {
+      $scope.products = res;
+    }, function (err) {
+      growl.error("Something wrong please try again");
+    });
 
-    $scope.removeUser = function (index) {
+    $scope.removeUser = function (product, index) {
+      Sweet.delete({
+        _id: product.id
+      }, function(res) {
         $scope.products.splice(index, 1);
+        growl.success("Successful deleted");
+      }, function(err) {
+        growl.error("Something wrong please try again");
+      });
     };
 
     $scope.addProduct = function () {
@@ -34,11 +29,38 @@ angular.module('sweetboxApp')
       $scope.products.push($scope.inserted);
     };
 
-    Sweet.get({},function (res) {
-      console.log(res);
-    },function (err) {
-      console.log(err);
-    });
+    $scope.updateProduct = function (product, index) {
+      if(!$scope.checkProduct(product)) {
+        if(product.id) {
 
+          Sweet.edit(product,function (res) {
+            console.log(res);
+            growl.success("Successful updated");
+          },function (err) {
+            growl.error("Something wrong please try again");
+          });
 
+        } else {
+
+          Sweet.create(product,function (res) {
+            $scope.products.splice(index, 1, res);
+            growl.success("Successful updated");
+          },function (err) {
+            growl.error("Something wrong please try again");
+          });
+
+        }
+      } else {
+        growl.error("Some field is empty");
+      }
+    };
+
+    $scope.checkProduct = function (product) {
+      for(var item in product) {
+        if(product[item]) {
+          return false;
+        }
+      }
+      return true;
+    }
   });

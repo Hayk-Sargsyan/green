@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row" ng-repeat="product in products track by $index">
-    <form editable-form name="editableForm" onaftersave="saveUser()" shown="inserted == product">
+    <form editable-form name="editableForm" onaftersave="updateProduct(product, $index)" shown="inserted == product">
 
       <div class="col-md-3">
         <!-- editable username (text with validation) -->
@@ -32,10 +32,10 @@
           <button type="button" class="btn btn-default" ng-click="editableForm.$show($index)" ng-show="!editableForm.$visible">
             Edit
           </button>
-          <button class="btn btn-danger" ng-click="removeUser($index)" ng-show="!editableForm.$visible">del</button>
+          <button class="btn btn-danger" ng-click="removeUser(product, $index)" ng-show="!editableForm.$visible">del</button>
           <!-- buttons to submit / cancel form -->
       <span ng-show="editableForm.$visible">
-        <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
+        <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting" ng-click="">
           Save
         </button>
         <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
@@ -49,3 +49,5 @@
 
   <button class="btn btn-default" ng-click="addProduct()">Add row</button>
 </div>
+
+<div growl></div>
