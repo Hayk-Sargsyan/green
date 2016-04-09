@@ -7,5 +7,6 @@ var controller = require('./sweets.controller');
 var router = express.Router();
 
 router.get('/', controller.all);
+router.post('/', controller.create);
 
 module.exports = router;
