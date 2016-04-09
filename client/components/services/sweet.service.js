@@ -21,7 +21,7 @@ angular.module('sweetboxApp')
         },
         delete: {
           method: 'DELETE',
-          url: replyApiUrl +  + '/:number'
+          url: replyApiUrl + '/:number'
         }
       });
   });

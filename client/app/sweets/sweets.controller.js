@@ -3,7 +3,6 @@ angular.module('sweetboxApp')
     $scope.products = [];
 
     Sweet.query({}, function (res) {
-      console.log(res);
       $scope.products = res;
     }, function (err) {
       growl.error("Something wrong please try again");
@@ -32,7 +31,7 @@ angular.module('sweetboxApp')
 
     $scope.updateProduct = function (product, index) {
       if(!$scope.checkProduct(product)) {
-        if(product.id) {
+        if(product._id) {
 
           Sweet.edit(product,function (res) {
             console.log(res);
@@ -43,7 +42,7 @@ angular.module('sweetboxApp')
 
         } else {
 
-          Sweet.create(product,function (res) {
+          Sweet.create(product, function (res) {
             $scope.products.splice(index, 1, res);
             growl.success("Successful updated");
           },function (err) {
