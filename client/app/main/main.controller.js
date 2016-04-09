@@ -13,10 +13,17 @@ angular.module('sweetboxApp')
         number: $scope.barcode
       }, function (res) {
         $scope.product = res;
-        $scope.productList.push(res);
         $scope.barcode = "";
       }, function (err) {
-        
+
       });
     });
+
+    $scope.add = function(prod) {
+      $scope.productList.add(prod);
+    };
+
+    $scope.cancel = function() {
+      $scope.product = null;
+    };
   });
