@@ -1,5 +1,5 @@
 angular.module('sweetboxApp')
-  .controller('MainCtrl', function ($scope, Sweet, growl) {
+  .controller('MainCtrl', function ($scope, Sweet, growl, External) {
     $scope.barcode = "";
     $scope.product = null;
     $scope.productList = [];
@@ -20,7 +20,11 @@ angular.module('sweetboxApp')
     });
 
     $scope.add = function(prod) {
+      prod.count--;
       $scope.productList.push(prod);
+      External.decrease({
+        number: prod.barcode
+      });
     };
 
     $scope.cancel = function() {
