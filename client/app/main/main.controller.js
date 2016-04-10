@@ -1,5 +1,5 @@
 angular.module('sweetboxApp')
-  .controller('MainCtrl', function ($scope, Sweet) {
+  .controller('MainCtrl', function ($scope, Sweet, growl) {
     $scope.barcode = "";
     $scope.product = null;
     $scope.productList = [];
@@ -15,7 +15,7 @@ angular.module('sweetboxApp')
         $scope.product = res;
         $scope.barcode = "";
       }, function (err) {
-
+        growl.warning('Not found');
       });
     });
 
@@ -25,6 +25,12 @@ angular.module('sweetboxApp')
 
     $scope.cancel = function() {
       $scope.product = null;
+    };
+
+    $scope.clearHistory = function() {
+      $scope.product = '';
+      $scope.barcode = "";
+      $scope.productList = [];
     };
 
     $scope.total = function() {
