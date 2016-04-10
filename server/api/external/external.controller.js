@@ -52,35 +52,27 @@ function handleError(res, statusCode) {
 
 
 
-
-
-exports.all = function(req, res) {
-  return res.status(200).json([{id:"1"},{id: "2"},{id: "3"}]);
-};
-
-
 // Gets a single Thing from the DB
 export function show(req, res) {
   return Sweet.find({"number": req.params.number}).exec()
-    .then(handleEntityNotFound(res))
-    .then(respondWithResult(res))
-    .catch(handleError(res));
+    .then(function(result){
+      if (result) {
+        res.status(200).json(result[0]);  
+      } else {
+        res.status(404).end();
+      }
+    });
 }
 
-exports.create = function(req, res) {
-  return res.status(200).json({
-    aac: "yeheee POSTED!!! "
-  });
-};	
 
 exports.update = function(req, res) {
-	console.log("ready to update created ");
+	console.log("ready to update created ", req.body);
 	console.log(req.params.number);
-	    
-
-    // return res.status(200).json({
-    //     aac: "yeheee POSTED!!! "
-    // });
+  Sweet.find().exec().then(function(data){
+    _.each(data, function(item){
+      console.log(item);
+    });
+  });
 };
 
 

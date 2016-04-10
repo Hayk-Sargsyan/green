@@ -34,14 +34,11 @@ export function create(req, res) {
 
 // Updates an existing Thing in the DB
 export function update(req, res) {
-  if (req.body._id) {
-    delete req.body._id;
-  }
-  return Sweet.find({"number": req.params.number}).exec()
-    .then(handleEntityNotFound(res))
-    .then(saveUpdates(req.body))
-    .then(respondWithResult(res))
-    .catch(handleError(res));
+  var query = {"number": req.params.number};
+  Sweet.findOneAndUpdate(query, req.body, {upsert:true}, function(err, doc){
+      if (err) return res.send(500, { error: err });
+      return res.send("succesfully saved");
+  });
 }
 
 // Deletes a Thing from the DB

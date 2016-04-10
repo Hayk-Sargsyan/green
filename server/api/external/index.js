@@ -5,12 +5,9 @@ var controller = require('./external.controller');
 
 var router = express.Router();
 
-router.get('/', controller.all);
-
-//router.get('/:id', controller.show);
-router.post('/', controller.create);
+router.get('/:number', controller.show);
 router.put('/:number', controller.update);
-// router.patch('/:id', controller.update);
+// router.('/:id', controller.update);
 // router.delete('/:id', controller.destroy);
 
 
