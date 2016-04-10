@@ -9,12 +9,13 @@ angular.module('sweetboxApp')
     });
 
     $scope.removeUser = function (product, index) {
+      $scope.products.splice(index, 1);
       Sweet.delete({
         number: product.number
       }, function(res) {
-        $scope.products.splice(index, 1);
         growl.success("Successful deleted");
       }, function(err) {
+        $scope.products.splice(index, 0, product);
         growl.error("Something wrong please try again");
       });
     };
@@ -34,7 +35,6 @@ angular.module('sweetboxApp')
         if(product._id) {
 
           Sweet.edit(product,function (res) {
-            console.log(res);
             growl.success("Successful updated");
           },function (err) {
             growl.error("Something wrong please try again");

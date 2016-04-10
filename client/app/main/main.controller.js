@@ -20,7 +20,7 @@ angular.module('sweetboxApp')
     });
 
     $scope.add = function(prod) {
-      $scope.productList.add(prod);
+      $scope.productList.push(prod);
     };
 
     $scope.cancel = function() {

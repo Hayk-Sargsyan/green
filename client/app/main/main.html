@@ -20,10 +20,12 @@
         <td>Product name</td>
         <td>Price</td>
       </thead>
-      <td ng-repeat="product in productList track by $index">
-        <tr>{{product.name}}</tr>
-        <tr>{{product.price}}</tr>
-      </td>
+      <tbody>
+        <tr ng-repeat="item in productList track by $index">
+          <td>{{item.name}}</td>
+          <td>{{item.price}}</td>
+        </tr>
+      </tbody>
     </table>
     <h1> Total {{total()}}</h1>
   </div>
