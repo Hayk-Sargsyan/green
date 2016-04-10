@@ -66,12 +66,19 @@ export function show(req, res) {
 
 
 exports.update = function(req, res) {
-	console.log("ready to update created ", req.body);
 	console.log(req.params.number);
-  Sweet.find().exec().then(function(data){
-    _.each(data, function(item){
-      console.log(item);
-    });
+  var query = {number: req.params.number};
+  
+  Sweet.find(query).exec().then(function(data){
+    if ( data.length && data[0].count > 0 ) {
+      data[0].count--;
+      Sweet.findOneAndUpdate(query, data[0], {upsert:true}, function(err, doc){
+        if (err) return res.send(500, { error: err });
+        return res.send("succesfully decreased!!!");
+      });
+    } else {
+      return res.send(404, { error: "There is not enought " + req.body.name + " sweet" });
+    }
   });
 };
 

@@ -16,9 +16,10 @@ export function all(req, res) {
 export function show(req, res) {
   return Sweet.find({"number": req.params.number}).exec()
     .then(function(result){
-      if (result) {
+      if (result.length) {
         res.status(200).json(result[0]);  
       } else {
+        console.log("NOT FND")
         res.status(404).end();
       }
     });
