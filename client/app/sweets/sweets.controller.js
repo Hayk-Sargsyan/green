@@ -44,7 +44,7 @@ angular.module('sweetboxApp')
 
           Sweet.create(product, function (res) {
             $scope.products.splice(index, 1, res);
-            growl.success("Successful updated");
+            growl.success("Successful added");
           },function (err) {
             growl.error("Something wrong please try again");
           });
