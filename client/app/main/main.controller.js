@@ -20,10 +20,14 @@ angular.module('sweetboxApp')
     });
 
     $scope.add = function(prod) {
-      prod.count--;
       $scope.productList.push(prod);
+
       External.decrease({
-        number: prod.barcode
+        number: prod.number
+      },function (req) {
+
+      }, function (err) {
+
       });
     };
 

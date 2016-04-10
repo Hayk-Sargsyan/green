@@ -1,52 +1,52 @@
 <div class="container">
-  <button class="btn btn-default" ng-click="addProduct()">Add Product</button>
+  <button class="btn btn-primary" ng-click="addProduct()">Add Product</button>
 
   <div class="text-center">
-    <div class="col-md-12">
-      <div class="col-md-2">
-        Product Number
+    <div class="row">
+      <div class="col-xs-2">
+        Number
       </div>
 
-      <div class="col-md-3">
-        Product Name
+      <div class="col-xs-2 col-md-3">
+        Name
       </div>
 
-      <div class="col-md-2">
-        Price(amd)
+      <div class="col-xs-3 col-md-2">
+        Price(AMD)
       </div>
 
-      <div class="col-md-2">
+      <div class="col-xs-2">
         Count
       </div>
 
-      <div class="col-md-3">
+      <div class="col-xs-3">
         #
       </div>
     </div>
     <hr>
     <div class="row" ng-repeat="product in products track by $index">
-      <div class="col-md-2" ng-if="!product.number">
+      <div class="col-xs-2" ng-if="!product.number">
         <span editable-number="product.number" e-name="name" e-form="editableForm" onbeforesave="checkName($data)" e-required>{{ product.number || 'empty' }}</span>
       </div>
 
-      <div class="col-md-2" ng-if="product.number">
+      <div class="col-xs-2" ng-if="product.number">
         <span>{{ product.number }}</span>
       </div>
 
       <form editable-form name="editableForm" onaftersave="updateProduct(product, $index)" shown="inserted == product">
-        <div class="col-md-3">
+        <div class="col-xs-3">
           <span editable-text="product.name" e-name="name" onbeforesave="checkName($data)" e-required>{{ product.name || 'empty' }}</span>
         </div>
 
-        <div class="col-md-2">
+        <div class="col-xs-2">
           <span editable-number="product.price" e-name="name" onbeforesave="checkName($data)" e-required>{{ product.price || 'empty' }}</span>
         </div>
 
-        <div class="col-md-2">
+        <div class="col-xs-2">
           <span editable-number="product.count" e-name="name" onbeforesave="checkName($data)" e-required>{{ product.count || 'empty' }}</span>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-xs-3">
           <div class="buttons">
             <!-- button to show form -->
             <button type="button" class="btn btn-default" ng-click="editableForm.$show($index)" ng-show="!editableForm.$visible">
@@ -58,14 +58,14 @@
         <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting" ng-click="">
           Save
         </button>
-        <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
+        <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel(); checkProd(product);">
           Cancel
         </button>
       </span>
           </div>
         </div>
 
-        <div class="col-md-12">
+        <div class="col-xs-12">
           <hr>
         </div>
       </form>

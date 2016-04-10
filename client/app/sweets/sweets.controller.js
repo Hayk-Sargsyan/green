@@ -55,12 +55,22 @@ angular.module('sweetboxApp')
       }
     };
 
+    $scope.checkProd = function(product) {
+      if (!$scope.checkProduct(product)) {
+        $scope.products.pop()
+      }
+    };
+
+    var filds = ['name', 'number', 'price', 'count'];
+
     $scope.checkProduct = function (product) {
-      for(var item in product) {
-        if(product[item]) {
+
+      for(var i = 0; i < filds.length; i++) {
+        if(!product[filds[i]]) {
           return false;
         }
       }
+
       return true;
     }
   });
