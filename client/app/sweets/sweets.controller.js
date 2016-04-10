@@ -31,27 +31,23 @@ angular.module('sweetboxApp')
     };
 
     $scope.updateProduct = function (product, index) {
-      if(!$scope.checkProduct(product)) {
-        if(product._id) {
+      if(product._id) {
 
-          Sweet.edit(product,function (res) {
-            growl.success("Successful updated");
-          },function (err) {
-            growl.error("Something wrong please try again");
-          });
+        Sweet.edit(product,function (res) {
+          growl.success("Successful updated");
+        },function (err) {
+          growl.error("Something wrong please try again");
+        });
 
-        } else {
-
-          Sweet.create(product, function (res) {
-            $scope.products.splice(index, 1, res);
-            growl.success("Successful added");
-          },function (err) {
-            growl.error("Something wrong please try again");
-          });
-
-        }
       } else {
-        growl.error("Some field is empty");
+
+        Sweet.create(product, function (res) {
+          $scope.products.splice(index, 1, res);
+          growl.success("Successful added");
+        },function (err) {
+          growl.error("Something wrong please try again");
+        });
+
       }
     };
 
